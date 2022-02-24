@@ -2,12 +2,19 @@ package com.brianfair.javagroupproject.models;
 
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -17,6 +24,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -75,9 +84,9 @@ public class User
     private Date updatedAt;
     
 	
-//	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-//	@JsonIgnore
-//	private List<Algo>algos;
+	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Order>orders;
 //	
 //	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 //	@JsonIgnore
@@ -88,14 +97,14 @@ public class User
 //	private List<View> views;
 //
 //	
-//	@ManyToMany(fetch = FetchType.LAZY)
-//	@JoinTable
-//	(
-//	    name = "likes", 
-//	    joinColumns = @JoinColumn(name = "user_id"), 
-//	    inverseJoinColumns = @JoinColumn(name = "algo_id")
-//	)
-//	private List<Algo> algosLiked;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable
+	(
+	    name = "favorites", 
+	    joinColumns = @JoinColumn(name = "user_id"), 
+	    inverseJoinColumns = @JoinColumn(name = "order_id")
+	)
+	private List<Order> favoriteOrders;
    
 
 	@PrePersist
@@ -194,6 +203,14 @@ public class User
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
     

@@ -1,7 +1,5 @@
 package com.brianfair.javagroupproject.controllers;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -13,294 +11,258 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.brianfair.javagroupproject.models.Order;
 import com.brianfair.javagroupproject.models.User;
+import com.brianfair.javagroupproject.services.OrderService;
 import com.brianfair.javagroupproject.services.UserService;
-import com.brianfair.javagroupproject.validators.UserValidation;
 
 
 
 
 
 @Controller
-public class UsersController
+public class OrderController
 {
-	
+
 	@Autowired
     private UserService userService;
 	@Autowired
-	private UserValidation validation;
+	private OrderService orderService;
 
-
-
-	@RequestMapping("/")
-	public String registerForm(@ModelAttribute("user") User user) {
-	    return "main.jsp";
-	}
-
-	@RequestMapping("/home")
-	public String home(Model model, HttpSession session)
-	{
-		if (session.getAttribute("user_id") == null)
-		{
-			return "redirect:/";
-		}
-		long user_id = (Long) session.getAttribute("user_id");
-		User this_user = userService.findUserById(user_id);
-		model.addAttribute("user", this_user);
-
-		
-		return "home.jsp";
-	}
-	
-	@RequestMapping(value="/registering", method=RequestMethod.POST)
-	public String registerUser(@Valid @ModelAttribute("user") User user,
-								BindingResult result, HttpSession session)
-	{
-		validation.validate(user, result);
-		if(result.hasErrors())
-		{
-			return "main.jsp";
-		}
-		
-		
-		User newUser = this.userService.registerUser(user);
-		session.setAttribute("user_id", newUser.getId());
-		return "redirect:/home";
-	}
+//	@Autowired
+//	private ViewService viewService;
 	
 	
-    @RequestMapping(value="/loggingIn", method=RequestMethod.POST)
-    public String loginUser(@RequestParam("email") String email,
-    					@RequestParam("password") String password,
-    					Model model,
-    					HttpSession session,
-    					RedirectAttributes redirectAttr) {
-    	if(!this.userService.authenticateUser(email, password))
-    	{
-    		redirectAttr.addFlashAttribute("loginError", "Invalid Credentials!");
-    		return "redirect:/";
-    		
-    	}
-    	User this_user = this.userService.findByEmail(email);
-  	  	session.setAttribute("user_id", this_user.getId());
-  	  	return "redirect:/home";
-    }
-
-    
-	@RequestMapping(value="/edit/user")
-	public String editComment(Model model, 
-	  						HttpSession session)
-	{
-		if (session.getAttribute("user_id") == null)
-		{
-			return "redirect:/";
-		}
-		Long user_id = (Long)session.getAttribute("user_id");
-		User usr = this.userService.findUserById(user_id);
-		model.addAttribute("user", usr);
-		return "edituser.jsp";
-	}
-	@RequestMapping(value="/editing/user/{id}", method=RequestMethod.POST)
-	public String editingComment(@Valid @ModelAttribute("user") User user,
-	  							BindingResult result,
-	  							@PathVariable("id") Long userId,
-	  							HttpSession session,
-	  							Model model)
-	{
-		if (session.getAttribute("user_id") == null)
-		{
-			return "redirect:/";
-		}
-		Long user_id = (Long)session.getAttribute("user_id");
-		User usr = this.userService.findUserById(user_id);
-		System.out.println("usr email: "+usr.getEmail()+" user email: "+user.getEmail());
-		
-
-		if ((usr.getEmail().equals(user.getEmail())))
-		{
-			validation.editValidate(false, user, result);
-		}
-		else
-		{
-			validation.editValidate(true, user, result);
-		}
-		
-        if (result.hasErrors())
-        {
-            return "edituser.jsp";
-        }
-        else
-        {
-    		if (!(usr.getPassword().equals(user.getPassword())))
-    		{
-    			this.userService.registerUser(user);
-        		return "redirect:/home";
-
-    		}
-    		user.setPassword(usr.getPassword());
-			this.userService.registerUser(user);
-    		return "redirect:/home";
-        }
-	}
-	  
-
-	@RequestMapping("/like/{id}")
-	public String like(@PathVariable("id") Long algo_id, HttpSession session)
-	{
-		if (session.getAttribute("user_id") == null)
-		{
-			return "redirect:/";
-		}
-		Long user_id = (Long)session.getAttribute("user_id");
-		User usr = this.userService.findUserById(user_id);
-		return "redirect:/home";
-	}
 	
-	@RequestMapping("/unlike/{id}")
-	public String unlike(@PathVariable("id") Long algo_id, HttpSession session)
-	{
-		if (session.getAttribute("user_id") == null)
-		{
-			return "redirect:/";
-		}
-		Long user_id = (Long)session.getAttribute("user_id");
-		User usr = this.userService.findUserById(user_id);
-		return "redirect:/home";
-	}
-	
-	
-  @RequestMapping("/logout")
-  public String logout(HttpSession session)
+  @RequestMapping("/order/details/{id}")
+  public String IdeaDetails(@PathVariable("id") Long order_id,
+  						Model model, 
+  						HttpSession session)
   {
+		Long user_id = (Long)session.getAttribute("user_id");
+		User usr = this.userService.findUserById(user_id);
+	  	model.addAttribute("user", usr);
+
+	  	Order this_order = this.orderService.findOrderById(order_id);
+	  	model.addAttribute("order", this_order);
+	  	
+	  	return "orderdetails.jsp";
+ }
+
+  
+    
+    @RequestMapping("/make/order")
+    public String makeOrder(@ModelAttribute("order") Order order, 
+    			HttpSession session,
+    			Model model) 
+    {
 		if (session.getAttribute("user_id") == null)
 		{
 			return "redirect:/";
 		}
-	  	session.invalidate();
-	  	return "redirect:/";
-  }
+		Long user_id = (Long)session.getAttribute("user_id");
+		User usr = this.userService.findUserById(user_id);
+    	model.addAttribute("user", usr);
+//		model.addAttribute("categories", this.categoryService.getAllCategories());
+        return "makeorder.jsp";
+    }
+    @RequestMapping(value="/making/order", method=RequestMethod.POST)
+    public String makingOrder(@Valid @ModelAttribute("order") Order order,
+    							BindingResult result,
+    							HttpSession session,
+    							Model model)
+    {
+		if (session.getAttribute("user_id") == null)
+		{
+			return "redirect:/";
+		}
+//		Long user_id = (Long)session.getAttribute("user_id");
+//		User usr = this.userService.findUserById(user_id);
+        if (result.hasErrors()) {
+            return "makeorder.jsp";
+        } else{
+        	Order this_order = orderService.save(order);
+        	return "redirect:/order/details/"+this_order.getId();
+        }
+    }
+    
+    
+    
+    
+    @RequestMapping("/edit/order/{id}")
+    public String editAlgo(@PathVariable("id") Long order_id, 
+    			HttpSession session,
+    			Model model) 
+    {
+		if (session.getAttribute("user_id") == null)
+		{
+			return "redirect:/";
+		}
+		Long user_id = (Long)session.getAttribute("user_id");
+		User usr = this.userService.findUserById(user_id);
+    	model.addAttribute("user", usr);
 
+		Order this_order = this.orderService.findOrderById(order_id);
+    	model.addAttribute("order", this_order);
+    	//		model.addAttribute("categories", this.categoryService.getAllCategories());
+        return "editOrder.jsp";
+    }
+    @RequestMapping(value="/editing/order/{id}", method=RequestMethod.POST)
+    public String editingAlgo(@Valid @ModelAttribute("order") Order order,
+    							BindingResult result,
+    							@PathVariable("id") Long order_id,
+    							HttpSession session,
+    							Model model)
+    {
+		if (session.getAttribute("user_id") == null)
+		{
+			return "redirect:/";
+		}
+		Long user_id = (Long)session.getAttribute("user_id");
+		User usr = this.userService.findUserById(user_id);
+//    	model.addAttribute("user", usr);
+        if (result.hasErrors()) {
+        	System.out.println(result);
+            return "editOrder.jsp";
+        } else{
+        	Order this_order = orderService.save(order);
+        	return "redirect:/order/details/"+this_order.getId();
+        }
+    }
+	
+    
+    
+  	@RequestMapping("/delete/order/{id}")
+  	public String deleteIdea(@PathVariable("id") Long order_id, HttpSession session)
+  	{
+  		if (session.getAttribute("user_id") == null)
+  		{
+  			return "redirect:/";
+  		}
+  		orderService.delete(order_id);
+  		return "redirect:/home";
+  	}
+  	
+  	
+
+  	
+  	
 	
 	
 }
 
-//@RequestMapping("/register")
-//public String registerForm(@ModelAttribute("user") User user) {
-//    return "registration.jsp";
-//}
-//
-//@RequestMapping(value="/registering", method=RequestMethod.POST)
-//public String registerUser(@Valid @ModelAttribute("user") User user,
-//							BindingResult result, HttpSession session) {
-//validation.validate(user, result);
-//if(result.hasErrors())
-//{
-//	return "registration.jsp";
-//}
-//User newUser = this.userService.registerUser(user);
-//session.setAttribute("user_id", newUser.getId());
-//return "redirect:/home";
-//}
-//
-//
-//@RequestMapping("/login")
-//public String login() {
-//    return "login.jsp";
-//}
-//@RequestMapping(value="/loggingIn", method=RequestMethod.POST)
-//public String loginUser(@RequestParam("email") String email,
-//					@RequestParam("password") String password,
-//					Model model,
-//					HttpSession session,
-//					RedirectAttributes redirectAttr) {
-//	if(!this.userService.authenticateUser(email, password))
-//	{
-//		redirectAttr.addFlashAttribute("loginError", "Invalid Credentials!");
-//		return "redirect:/login";
-//		
-//	}
-//	User this_user = this.userService.findByEmail(email);
-//	  	session.setAttribute("user_id", this_user.getId());
-//	  	return "redirect:/home";
-//}
-//
-//
+
+
 //	
-//@RequestMapping("/home")
-//public String home(Model model, HttpSession session)
+//@RequestMapping("/order/details/{id}")
+//public String algoDetails(@ModelAttribute("comment") Comment comment, @PathVariable("id") Long algo_id,
+//						Model model, 
+//						HttpSession session)
 //{
 //	if (session.getAttribute("user_id") == null)
 //	{
 //		return "redirect:/";
 //	}
-//	long user_id = (Long) session.getAttribute("user_id");
-//	User this_user = userService.findUserById(user_id);
-//	List<Show> shows = showService.getAllShows();
-//	List<Double> avgs = new ArrayList<>();
-//	for (Show show : shows)
+//
+//	Long user_id = (Long)session.getAttribute("user_id");
+//	User usr = this.userService.findUserById(user_id);
+//	model.addAttribute("user", usr);
+//	Algo algo = this.algoService.findAlgoById(algo_id);
+//	List <Comment> comments = algo.getComments();
+//	View viewCount = this.algoService.incrementView(usr, algo);
+//	model.addAttribute("viewCount", viewCount);
+//
+//
+//	boolean hasCommented = false;
+//	for(Comment thisComment: comments)
 //	{
-//		int show_size = show.getRatings().size();
-//		int sum = 0;
-//		for (Rate rate : show.getRatings())
-////		for (int i=0; i<show.getRatings().size(); i++)
-//		{
-//			sum += rate.getRating();
-//			System.out.println(sum);
-//		}
-//		if (show_size > 0)
-//		{
-//			Double avg = ((double) sum/ (double) show_size);
-//			System.out.println(avg);
-//			avgs.add(avg);
-//		}
-//
+//		if(thisComment.getUser().getId() == user_id) hasCommented = true;
 //	}
-//	
-////	List<Idea> ideasLikersOrderAsc = ideaService.getAllLikersSizeAsc();
-////	model.addAttribute("ideas", ideasLikersOrderAsc);
-//	model.addAttribute("avgs", avgs);
-//	model.addAttribute("user", this_user);
-//	model.addAttribute("shows", shows);
-//	return "home.jsp";
+//	model.addAttribute("hasCommented", hasCommented);
+//	model.addAttribute("algo", algo);
+//	return "algodetails.jsp";
 //}
-//
-
-//	
-//    
-//    @RequestMapping("/create/show")
-//    public String createShow(@ModelAttribute("show") Show show, 
-//    			HttpSession session,
-//    			Model model) 
-//    {
+//@RequestMapping(value="/add/comment/{id}", method=RequestMethod.POST)
+//public String addingComment(@Valid @ModelAttribute("comment") Comment comment,
+//							BindingResult result,
+//							@PathVariable("id") Long algo_id,
+//							HttpSession session,
+//							Model model)
+//{
 //		if (session.getAttribute("user_id") == null)
 //		{
 //			return "redirect:/";
 //		}
 //		Long user_id = (Long)session.getAttribute("user_id");
 //		User usr = this.userService.findUserById(user_id);
-//    	model.addAttribute("user", usr);
-////		model.addAttribute("categories", this.categoryService.getAllCategories());
-//        return "createshow.jsp";
+//		model.addAttribute("user", usr);
+//		Algo this_algo = this.algoService.findAlgoById(algo_id);
+//		model.addAttribute("algo",this_algo);
+//    if (result.hasErrors()) {
+//        return "algodetails.jsp";
+//    } else{
+//    	commentService.save(comment);
+//    	return "redirect:/algo/details/"+algo_id;
 //    }
-//    @RequestMapping(value="/creating/show", method=RequestMethod.POST)
-//    public String creatingShow(@Valid @ModelAttribute("idea") Show show,
-//    							BindingResult result,
-//    							HttpSession session)
-//    {
+//}
+//
+//
+//@RequestMapping("/edit/comment/{id}")
+//public String editComment(@PathVariable("id") Long comment_id,
+//						Model model, 
+//						HttpSession session)
+//{
+//	if (session.getAttribute("user_id") == null)
+//	{
+//		return "redirect:/";
+//	}
+//	Long user_id = (Long)session.getAttribute("user_id");
+//	User usr = this.userService.findUserById(user_id);
+//	model.addAttribute("user", usr);
+//	Comment thisComment = commentService.findCommentById(comment_id);
+//	model.addAttribute("comment", thisComment);
+//	Algo algo = thisComment.getAlgo();
+//	model.addAttribute("algo", algo);
+//	
+//	return "editcomment.jsp";
+//}
+//@RequestMapping(value="/editing/comment/{id}", method=RequestMethod.POST)
+//public String editingComment(@Valid @ModelAttribute("comment") Comment comment,
+//							BindingResult result,
+//							@PathVariable("id") Long comment_id,
+//							HttpSession session,
+//							Model model)
+//{
 //		if (session.getAttribute("user_id") == null)
 //		{
 //			return "redirect:/";
 //		}
-//        if (result.hasErrors()) {
-//            return "createshow.jsp";
-//        } else{
-//        	showService.save(show);
-//            return "redirect:/home";
-//        }
+//		Long user_id = (Long)session.getAttribute("user_id");
+//		User usr = this.userService.findUserById(user_id);
+//		model.addAttribute("user", usr);
+//		Comment thisComment = commentService.findCommentById(comment_id);
+//		model.addAttribute("comment", thisComment);
+//		Algo algo = thisComment.getAlgo();
+//		model.addAttribute("algo", algo);
+//    if (result.hasErrors()) {
+//        return "editcomment.jsp";
+//    } else{
+//    	commentService.save(comment);
+//    	return "redirect:/algo/details/"+algo.getId();
 //    }
+//}
+
+//	@RequestMapping("/delete/comment/{comment_id}/{id}")
+//	public String deleteComment(@PathVariable("comment_id") Long comment_id, @PathVariable("id") Long algo_id, HttpSession session)
+//	{
+//		if (session.getAttribute("user_id") == null)
+//		{
+//			return "redirect:/";
+//		}
+//		commentService.delete(comment_id);
+//		return "redirect:/algo/details/"+algo_id;
+//	}
 //    
 //    
 //    @GetMapping("/edit/show/{id}")
