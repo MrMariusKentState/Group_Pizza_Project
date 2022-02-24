@@ -1,10 +1,9 @@
 package com.brianfair.javagroupproject.controllers;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -134,13 +133,16 @@ public class UsersController
         }
         else
         {
-    		if (!(usr.getPassword().equals(user.getPassword())))
-    		{
-    			this.userService.registerUser(user);
+//        	System.out.println("usr pw: "+usr.getPassword());
+//        	System.out.println("user pw: "+user.getPassword());
+//        	System.out.println("user pwc: "+user.getPasswordConfirmation());
+//        	System.out.println("BCrypt: "+BCrypt.checkpw(user.getPassword(), usr.getPassword()));
+    		if ( (usr.getPassword().equals(user.getPassword())) && 
+    				(user.getPassword().equals(user.getPasswordConfirmation())) )
+			{
+    			this.userService.save(user);
         		return "redirect:/home";
-
     		}
-    		user.setPassword(usr.getPassword());
 			this.userService.registerUser(user);
     		return "redirect:/home";
         }
@@ -148,7 +150,7 @@ public class UsersController
 	  
 
 	@RequestMapping("/like/{id}")
-	public String like(@PathVariable("id") Long algo_id, HttpSession session)
+	public String like(@PathVariable("id") Long order_id, HttpSession session)
 	{
 		if (session.getAttribute("user_id") == null)
 		{
@@ -160,7 +162,7 @@ public class UsersController
 	}
 	
 	@RequestMapping("/unlike/{id}")
-	public String unlike(@PathVariable("id") Long algo_id, HttpSession session)
+	public String unlike(@PathVariable("id") Long order_id, HttpSession session)
 	{
 		if (session.getAttribute("user_id") == null)
 		{
