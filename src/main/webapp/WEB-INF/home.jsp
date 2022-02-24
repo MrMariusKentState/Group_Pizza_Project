@@ -16,7 +16,8 @@
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 
 	<!-- MY OWN CSS -->
-	<link rel="stylesheet" href="/css/style.css"/>
+	<link rel="stylesheet" href="/css/home.css"/>
+	
 
 	<!-- FOR ANY BOOTSTRAP THAT USES JS OR jQuery-->
 <!-- 	<script src="/webjars/jquery/jquery.min.js"></script> -->
@@ -37,10 +38,49 @@
 				<a class="links" href="/make/order">Order</a>
 				<a class="links" href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
 			</div>
+		
 		</div>
 		
-
-
+		<h3 class = "headers">Select a pizza to begin your order!</h3>
+		<h4 class = "headers">All pizzas come with your choice of toppings and crust.</h4>
+		<br>
+		<div id = "pizza">
+		
+			<div id = "leftcol">
+		
+				<h4 class = "menutext">Cheese</h4>
+		        <p class = "hometext">Served with our fresh mozzarella covered in classic marinara sauce!</p>
+		  
+		
+		        <h4 class = "menutext">Sausage</h4>
+		        <p class = "hometext">Topped with our fresh italian sausage and mozzarella cheese!</p>
+				
+				
+		        <h4 class = "menutext">Pepperoni</h4>
+		        <p class = "hometext">Topped with small, thinly-sliced pepperoni and mozzarella cheese!</p>
+		       
+		        
+		        <h4 class = "menutext">Meat Lover's!</h4>
+		        <p class = "hometext">Toppings include pepperoni, italian sausage, bacon, and beef!</p>
+		
+			</div>
+			<div id = "rightcol">
+		
+			 	<h4 class = "menutext">Hawaiian Pizza</h4>
+		        <p class = "hometext">Toppings include ham and pineapple with our fresh mozzarella and classic marinara sauce!</p>
+		       
+		        
+		        <h4 class = "menutext">Supreme Pizza</h4>
+		        <p class = "hometext">Toppings include pepperoni, italian sausage, mushrooms, green peppers and red onions!</p>
+		        
+		        <h4 class = "menutext">Veggie Pizza</h4>
+		        <p class = "hometext">Toppings include mushrooms, green peppers red onions, roma tomatoes, and black olives!</p>
+		        
+		        <h4 class = "menutext">Barbeque Chicken Pizza</h4>
+		        <p class = "hometext">Toppings include white-mean chicken, bacon, and red onions with cheddar and mozzarella cheeses and our honey barbecue sauce!</p>
+		     
+		     </div>   
+		</div>
 	</div>
 </body>
 </html>
