@@ -266,13 +266,20 @@ body
 }
 
 .menutext {
-	color: yellow;
+	color:black;
 	font-size: 30px;
 }
 
 .headers {
-	color: white;
+	color: black;
 	text-align: center;
+}
+
+.headers1 {
+	color: #eb8f05;
+	text-align: center;
+	font-style: italic;
+	font-weight: bold;
 }
 
 h3 {
@@ -280,7 +287,8 @@ h3 {
 }
 
 #pizza {
-	background-image: url("pizza-pub-516-perrysburg.jpg");
+	margin-top: 10px;
+	background-image: url("Pizza.jpg");
 	margin-left: 20px;
 	margin-right: 20px;
 	padding: 10px;
@@ -293,3 +301,11 @@ h3 {
 	margin-left: 60px;
 }
 
+.white{
+	color: white;
+}
+
+#yellow{
+	color: yellow;
+	text-decoration: underline;
+}
