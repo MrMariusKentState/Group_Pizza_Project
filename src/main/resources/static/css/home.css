@@ -37,7 +37,8 @@ body
 	min-height: 75px;
 /* 	min-width: 900px; */
 	border-bottom: 1px solid darkgrey;
-	border-top: 1px darkgrey solid;
+	margin-top: -10px;
+	
 	
 }
 
@@ -48,8 +49,9 @@ body
 	align-items: center;
 	border-bottom: 1px darkgrey solid;
 	border-top: 1px darkgrey solid;
-	padding-top: 5px;
+	
 	padding-bottom: 5px;
+	
 	margin: 20px 15px;
 	height: 90px;
 }
@@ -254,7 +256,8 @@ body
     min-width: 400px;
     height: 130vh;
     width: 100%;
-    border: solid darkgrey 1px;
+    margin-top: 0px;
+   
 }
 
 

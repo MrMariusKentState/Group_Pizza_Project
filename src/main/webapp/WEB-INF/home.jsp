@@ -27,13 +27,12 @@
 </head>
 <body class="bgLightBlack">
 	<div class="package bgLightBlack">
-		<h1 class="title_grad txt_grad title_bar" >Welcome to Tony's Pizza</h1>
 		<div class="taskbar">
 			<div class="marginLeft width70">
-				<p class="white">Welcome ${user.firstName} ${user.lastName}</p>
+				<p class="white navbar-brand link">Welcome!</p>
 			</div>
 				
-			<div class="taskbarBtns width30">
+			<div class="col-md-5">
 				<a class="links" href="/edit/user">Edit Profile</a>
 				<a class="links" href="/make/order">Order</a>
 				<a class="links" href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
@@ -42,6 +41,8 @@
 		</div>
 		
 		<div id = "pizza">
+		
+		<h1 class="title_grad txt_grad title_bar">Welcome to Tony's Pizza!</h1>
 		<br>
 		<br>
 		<h1 class = "headers1">Create your own custom pizza!</h1>
