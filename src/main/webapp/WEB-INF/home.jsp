@@ -27,10 +27,10 @@
 </head>
 <body class="bgLightBlack">
 	<div class="package bgLightBlack">
-		<h1 class="title_grad txt_grad title_bar" >The World's Best Pizza</h1>
+		<h1 class="title_grad txt_grad title_bar" >Welcome to Tony's Pizza</h1>
 		<div class="taskbar">
 			<div class="marginLeft width70">
-				<p class="txtLeft text-secondary">Welcome ${user.firstName} ${user.lastName}</p>
+				<p class="white">Welcome ${user.firstName} ${user.lastName}</p>
 			</div>
 				
 			<div class="taskbarBtns width30">
@@ -41,85 +41,26 @@
 		
 		</div>
 		
-		<h3 class = "headers">Select a pizza to begin your order!</h3>
-		<h4 class = "headers">All pizzas come with your choice of toppings and crust.</h4>
-		<br>
 		<div id = "pizza">
-		
-			<div id = "leftcol">
-		
-				<h4 class = "menutext">Cheese</h4>
-		        <p class = "hometext">Served with our fresh mozzarella covered in classic marinara sauce!</p>
-		  
-		
-		        <h4 class = "menutext">Sausage</h4>
-		        <p class = "hometext">Topped with our fresh italian sausage and mozzarella cheese!</p>
-				
-				
-		        <h4 class = "menutext">Pepperoni</h4>
-		        <p class = "hometext">Topped with small, thinly-sliced pepperoni and mozzarella cheese!</p>
-		       
-		        
-		        <h4 class = "menutext">Meat Lover's!</h4>
-		        <p class = "hometext">Toppings include pepperoni, italian sausage, bacon, and beef!</p>
-		
-			</div>
-			<div id = "rightcol">
-		
-			 	<h4 class = "menutext">Hawaiian Pizza</h4>
-		        <p class = "hometext">Toppings include ham and pineapple with our fresh mozzarella and classic marinara sauce!</p>
-		       
-		        
-		        <h4 class = "menutext">Supreme Pizza</h4>
-		        <p class = "hometext">Toppings include pepperoni, italian sausage, mushrooms, green peppers and red onions!</p>
-		        
-		        <h4 class = "menutext">Veggie Pizza</h4>
-		        <p class = "hometext">Toppings include mushrooms, green peppers red onions, roma tomatoes, and black olives!</p>
-		        
-		        <h4 class = "menutext">Barbeque Chicken Pizza</h4>
-		        <p class = "hometext">Toppings include white-mean chicken, bacon, and red onions with cheddar and mozzarella cheeses and our honey barbecue sauce!</p>
-		     
-		     </div>   
+		<br>
+		<br>
+		<h1 class = "headers1">Create your own custom pizza!</h1>
+		<br>
+		<h3 class = "headers">With our fresh mozzarella and classic marinara sauce</h3>
+		<br>
+		<h3 class = "headers">Over 50 different choices of toppings available!</h3>
+		<br>
+		<h3 class = "headers">Classic, Deep Dish, and stuffed crusts available!</h3>
+		<br>
+		<br>
+		<h1 class = "headers">Click <span id = "yellow"><a href = "/make/order">here</a></span> to begin your order!</h1>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 		</div>
 	</div>
+
 </body>
 </html>
-
-<!-- 		<div class="myContainer">  -->
-<!-- 		  <h2 class="title">Algos</h2>          -->
-<!-- 		  <table> -->
-<!-- 			<thead class="bgDkGrey"> -->
-<!-- 			  <tr class="bgDkGrey black"> -->
-<!-- 			    <th>Algo</th> -->
-<!-- 			    <th>Description</th> -->
-<!-- 			    <th>Language</th> -->
-<!-- 			    <th>Likes</th> -->
-<!-- 			    <th>Action</th> -->
-<!-- 			  </tr> -->
-<!-- 			</thead> -->
-<!-- 			<tbody> -->
-			
-<%-- 				<c:forEach  items="${algos}" var="algo"> --%>
-<!-- 				  <tr class="bgDarkDkGrey"> -->
-<%-- 				  	<td> <a class="links" href="/algo/details/${algo.id}"> ${algo.name}</a> </td> --%>
-<%-- 				    <td>${algo.description}</td> --%>
-<%-- 				    <td>${algo.language}</td> --%>
-<%-- 				    <td>${algo.likers.size()}</td> --%>
-<!-- 				    <td> -->
-<%-- 				    	<c:choose> --%>
-<%-- 				    	<c:when test="${algo.likers.contains(user)}"> --%>
-<%-- 				    		<a class="links" href="/unlike/${algo.id}">Unlike</a> --%>
-<%-- 				    	</c:when> --%>
-<%-- 				    	<c:otherwise> --%>
-<%-- 				    		<a class="links" href="/like/${algo.id}">Like</a> --%>
-<%-- 				    	</c:otherwise> --%>
-<%-- 				    	</c:choose> --%>
-<!-- 				    </td> -->
-<!-- 				  </tr> -->
-<%-- 				</c:forEach> --%>
-<!-- 			</tbody> -->
-<!-- 		  </table> -->
-
-<!-- 		</div> -->
-
-

@@ -24,7 +24,7 @@
 </head>
 <body class="bg-dark">
 	<div class="d-flex flex-column w-100 bg-dark text-light">
-		<h1 class="m-3 text-center title_grad txt_grad pb-3 border_bottom pt-3 border_top" >The World's Best Pizza</h1>
+		<h1 class="m-3 text-center title_grad txt_grad pb-3 border_bottom pt-3 border_top" >Tony's Pizza</h1>
 		<div class="d-flex flex-row">
 			<div class="container border border-dark" >
 				<h1 class="m-3 pb-3 text-center border_bottom" >Register</h1>
