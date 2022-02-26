@@ -261,7 +261,7 @@ body
 
 
 .hometext {
-	color: white;
+	color: black;
 	font-style: italic;
 }
 
@@ -288,7 +288,7 @@ h3 {
 
 #pizza {
 	margin-top: 10px;
-	background-image: url("Pizza.jpg");
+	background-image: url("Pizza60.jpg");
 	margin-left: 20px;
 	margin-right: 20px;
 	padding: 10px;
