@@ -12,15 +12,20 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<!-- FOR Bootstrap CSS -->
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" >
 	<!-- YOUR own local CSS -->
 	<link rel="stylesheet" href="/css/stylekaris.css">
 	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/jquery.multiselect.css">
+	<link href=”https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css” rel=”stylesheet”>
 	<!-- For any Bootstrap that uses JS or jQuery-->
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/javascript/javascript.js" defer></script>
+
+
 
 	<title>Order Pizza</title>
 </head>
@@ -57,11 +62,12 @@
 						<div class = "col-md-3">
 							<form:label class="" path="method">Method: </form:label>
 						</div>
-						<div class = "col-md-5">
+						<div class = "col-md-6">
 							<form:select class="form-control" type="text" path="method" placeholder="Takeout, delivery, dine-in">
+								<option value="" disabled selected>--Select Method--</option>
 								<option value="takeout">Takeout</option>
 	        					<option value="delivery">Delivery</option>
-	        					<option value=dinein>Dine-in</option>
+	        					<option value="dinein">Dine-in</option>
 							</form:select>
 						</div>
 					</div>
@@ -74,12 +80,13 @@
 						<div class = "col-md-3">
 							<form:label  path="size">Size: </form:label>
 						</div>
-						<div class = "col-md-5">
+						<div class = "col-md-6">
 							<form:select class="form-control" type="text" path="size" placeholder="Small, Medium, Large, X-Large">
+								<option value="" disabled selected>--Select Size--</option>
 								<option value="small">Small</option>
 	        					<option value="medium">Medium</option>
-	        					<option value=large>Large</option>
-	        					<option value=xlarge>X-Large</option>
+	        					<option value="large">Large</option>
+	        					<option value="xlarge">X-Large</option>
 							</form:select>
 						</div>
 					</div>
@@ -92,13 +99,14 @@
 						<div class = "col-md-3">
 							<form:label path="crust">Crust: </form:label>
 						</div>
-						<div class = "col-md-5">
+						<div class = "col-md-6">
 							<form:select class="form-control mbd-select md-form" type="text" path="crust">
+								<option value="" disabled selected>--Select Crust--</option>
 								<option value="deepdish">Deep Dish</option>
 	        					<option value="thin">Thin</option>
 	        					<option value="thick">Thick</option>
-	        					<option value=stuffed>Stuffed</option>
-	        					<option value=glutenfree>Gluten Free</option>
+	        					<option value="stuffed">Stuffed</option>
+	        					<option value="glutenfree">Gluten Free</option>
 							</form:select>
 						</div>
 					</div>
@@ -108,24 +116,45 @@
 					<form:errors class="text-danger" path="quantity"/>
 					<div class = "row align-items-center">
 						<div class = "col-md-3">
-							<form:label class="color-bl label txt-underline" path="quantity">QTY: </form:label>
+							<form:label class="color-bl label txt-underline" path="quantity">Quantity: </form:label>
 						</div>
-						<div class = "col-md-3">
-							<form:input class="form-control" type="number" min="1" path="quantity" placeholder="Quantity"/>
+						<div class = "col-md-4">
+							<form:input class="form-control" type="number" min="1" path="quantity" placeholder="QTY"/>
 						</div>
 					</div>
 				</div>
 				
 			
 				<div class="form-group col-md-12 mt-3">
+			
 					<form:errors class="text-danger" path="toppings"/>
-					<div class = "row align-items-center">
-						<div class = "col-md-3">
-							<form:label path="toppings">Toppings: </form:label>
+					 <div class="container text-left">
+					<div class = "row justify-content-center">
+						<div class = "col-md-11">
+							<form:select path="toppings" name="basic[]" multiple="multiple" class="3col active form-control">
+								<option value="tomato sauce ">Tomato Sauce</option>
+								<option value="pesto">Pesto Sauce</option>
+								<option value="mozzarella">Mozzarella Cheese</option>
+	        					<option value="cheddar">Cheddar Cheese</option>
+								<option value="feta">Feta Cheese</option>
+								<option value="parmesan">Parmesan Cheese</option>
+								<option value="tomates">Tomates</option>
+	        					<option value="onions">Onions</option>
+	        					<option value="peppers">Peppers</option>
+	        					<option value="pineapple">Pineapple</option>
+	        					<option value="spinach">Spinach</option>
+	        					<option value="garlic">Garlic</option>
+	        					<option value="mushrooms">Mushrooms</option>
+	        					<option value="sausage">Sausage</option>
+	        					<option value="pepperoni">Pepperoni</option>
+	        					<option value="ham">Ham</option>	
+	        					<option value="bacon">Bacon</option>
+	        					<option value="chicken">Chicken</option>
+	        				
+							</form:select>
 						</div>
-						<div class = "col-md-9">
-						<form:input class="form-control" type="text" path="toppings" placeholder ="Pepperoni, Extra Cheeese ..."/>
-							</div>
+						
+					</div>
 					</div>
 				</div>
 			
@@ -141,13 +170,19 @@
 					<input class="btn btn-primary" type="submit" value="Submit Order"/>
 					<a class="btn btn-danger"  href="/home">Cancel</a>
 				</div>
+				 
 			</form:form>
 		</div>
 	</div>
 </div>
 </div>
 </div>
-
+	
+ <script src="javascript/jquery-3.3.1.min.js"></script>
+    <script src="/javascript/popper.min.js"></script>
+    <script src="/javascript/bootstrap.min.js"></script>
+    <script src="/javascript/jquery.multiselect.js"></script>
+    <script src="/javascript/main.js"></script>
 </body>
 </html>
 
