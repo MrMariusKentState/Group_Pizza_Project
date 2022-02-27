@@ -19,7 +19,9 @@
 	<!-- YOUR own local CSS -->
 	<link rel="stylesheet" href="/css/stylekaris.css">
 	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/stylemulti.css">
 	<link rel="stylesheet" href="/css/jquery.multiselect.css">
+	
 	<link href=”https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css” rel=”stylesheet”>
 	<!-- For any Bootstrap that uses JS or jQuery-->
 	<script src="/webjars/jquery/jquery.min.js"></script>
@@ -40,6 +42,7 @@
 		<div class = "col-md-5">
 				<a class="link" href="/home">Home</a>
 				<a class="link" href="/edit/user">Edit Profile</a>
+				<a class="link" href="/order/history">Order History</a>
 				<a class="link" href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
 		</div>
 	
@@ -51,7 +54,7 @@
 	
 
 		<div class="d-flex justify-content-center mt-4">
-			<div class = "row border border-secondary p-4 rounded mb-4 card-background">
+			<div class = "row border border-secondary p-4 rounded marg-bottom-10 card-background">
 				<div class="col">
 					<h2 class="text-center" > ~ <span class="text-center bold">Personalize Your Pizza</span> ~ </h2>
 			
@@ -65,9 +68,9 @@
 						<div class = "col-md-6">
 							<form:select class="form-control" type="text" path="method" placeholder="Takeout, delivery, dine-in">
 								<option value="" disabled selected>--Select Method--</option>
-								<option value="takeout">Takeout</option>
-	        					<option value="delivery">Delivery</option>
-	        					<option value="dinein">Dine-in</option>
+								<option value="Takeout">Takeout</option>
+	        					<option value="Delivery">Delivery</option>
+	        					<option value="Dine-in">Dine-in</option>
 							</form:select>
 						</div>
 					</div>
@@ -83,10 +86,10 @@
 						<div class = "col-md-6">
 							<form:select class="form-control" type="text" path="size" placeholder="Small, Medium, Large, X-Large">
 								<option value="" disabled selected>--Select Size--</option>
-								<option value="small">Small</option>
-	        					<option value="medium">Medium</option>
-	        					<option value="large">Large</option>
-	        					<option value="xlarge">X-Large</option>
+								<option value="Small">Small</option>
+	        					<option value="Medium">Medium</option>
+	        					<option value="Large">Large</option>
+	        					<option value="X-large">X-Large</option>
 							</form:select>
 						</div>
 					</div>
@@ -102,11 +105,11 @@
 						<div class = "col-md-6">
 							<form:select class="form-control mbd-select md-form" type="text" path="crust">
 								<option value="" disabled selected>--Select Crust--</option>
-								<option value="deepdish">Deep Dish</option>
-	        					<option value="thin">Thin</option>
-	        					<option value="thick">Thick</option>
-	        					<option value="stuffed">Stuffed</option>
-	        					<option value="glutenfree">Gluten Free</option>
+								<option value="Deep Dish">Deep Dish</option>
+	        					<option value="Thin">Thin</option>
+	        					<option value="Thick">Thick</option>
+	        					<option value="Stuffed">Stuffed</option>
+	        					<option value="Gluten-Free">Gluten Free</option>
 							</form:select>
 						</div>
 					</div>
@@ -127,29 +130,29 @@
 			
 				<div class="form-group col-md-12 mt-3">
 			
-					<form:errors class="text-danger" path="toppings"/>
-					 <div class="container text-left">
+					<div class="container text-left">
 					<div class = "row justify-content-center">
-						<div class = "col-md-11">
+						<div class = "col-md-10">
+							<form:errors class="text-danger" path="toppings"/>
 							<form:select path="toppings" name="basic[]" multiple="multiple" class="3col active form-control">
-								<option value="tomato sauce ">Tomato Sauce</option>
-								<option value="pesto">Pesto Sauce</option>
-								<option value="mozzarella">Mozzarella Cheese</option>
-	        					<option value="cheddar">Cheddar Cheese</option>
-								<option value="feta">Feta Cheese</option>
-								<option value="parmesan">Parmesan Cheese</option>
-								<option value="tomates">Tomates</option>
-	        					<option value="onions">Onions</option>
-	        					<option value="peppers">Peppers</option>
-	        					<option value="pineapple">Pineapple</option>
-	        					<option value="spinach">Spinach</option>
-	        					<option value="garlic">Garlic</option>
-	        					<option value="mushrooms">Mushrooms</option>
-	        					<option value="sausage">Sausage</option>
-	        					<option value="pepperoni">Pepperoni</option>
-	        					<option value="ham">Ham</option>	
-	        					<option value="bacon">Bacon</option>
-	        					<option value="chicken">Chicken</option>
+								<option value=" Tomato Sauce">Tomato Sauce</option>
+								<option value=" Pesto">Pesto Sauce</option>
+								<option value=" Mozzarella">Mozzarella Cheese</option>
+	        					<option value=" Cheddar Cheese">Cheddar Cheese</option>
+								<option value=" Feta Cheese">Feta Cheese</option>
+								<option value=" Parmesan">Parmesan Cheese</option>
+								<option value=" Tomates">Tomates</option>
+	        					<option value=" Onions">Onions</option>
+	        					<option value=" Peppers">Peppers</option>
+	        					<option value=" Pineapple">Pineapple</option>
+	        					<option value=" Spinach">Spinach</option>
+	        					<option value=" Garlic">Garlic</option>
+	        					<option value=" Mushrooms">Mushrooms</option>
+	        					<option value=" Sausage">Sausage</option>
+	        					<option value=" Pepperoni">Pepperoni</option>
+	        					<option value=" Ham">Ham</option>	
+	        					<option value=" Bacon">Bacon</option>
+	        					<option value=" Chicken">Chicken</option>
 	        				
 							</form:select>
 						</div>
@@ -179,7 +182,7 @@
 </div>
 	
  <script src="javascript/jquery-3.3.1.min.js"></script>
-    <script src="/javascript/popper.min.js"></script>
+ <script src="/javascript/popper.min.js"></script>
     <script src="/javascript/bootstrap.min.js"></script>
     <script src="/javascript/jquery.multiselect.js"></script>
     <script src="/javascript/main.js"></script>
@@ -187,7 +190,7 @@
 </html>
 
 					
-<!-- 							<option value="java">Java</option> -->
+<!-- 		"/Users/karishanson/Dropbox/My Mac (Kariss-Air)/Downloads/multiselect-15/js/jquery-3.3.1.min.js"					<option value="java">Java</option> -->
 <!-- 							<option value="python">Python</option> -->
 <!-- 							<option value="javascript">javascript</option> -->
 <!-- 							<option value="C">C</option> -->
