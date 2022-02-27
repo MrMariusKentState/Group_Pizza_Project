@@ -31,7 +31,7 @@
 				<a class="links" href="/home">Home</a>
 				<a class="links" href="/edit/user">Edit Profile</a>
 				<a class="links" href="/make/order">Order</a>
-				<a class="links" href="/logout">Logout <span>- (${user.firstName} ${user.lastName}) </span></a>
+				<a class="links" href="/logout">Logout<span>- (${user.firstName} ${user.lastName}) </span></a>
 	</div><br>	
 		<h1 class="title_grad txt_grad title_bar" >Order Details</h1>
 		<hr>
