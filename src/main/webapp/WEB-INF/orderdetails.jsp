@@ -75,7 +75,7 @@
 				<br>
 				
 				<div id="showDeliveryDetails">
-					<h2 class="text-center" > ~ <span>Your Delivery Info ~<br>(if delivery was method)</span></h2>
+					<h2 class="text-center" ><span> ~Your Delivery Info ~<br>(if delivery was method)</span></h2>
 					<hr>
 					<div>
 						<h3>Name: ${order.user.firstName} ${order.user.lastName}</h3>
