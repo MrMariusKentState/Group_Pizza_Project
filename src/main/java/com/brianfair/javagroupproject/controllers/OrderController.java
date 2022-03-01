@@ -1,8 +1,11 @@
 package com.brianfair.javagroupproject.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.catalina.realm.UserDatabaseRealm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,7 +91,67 @@ public class OrderController
     }
     
     
+    //Order History Page 
+    @RequestMapping("/order/history")
+    public String orderHistory(HttpSession session, Model model) {
+    	if (session.getAttribute("user_id") == null)
+		{
+			return "redirect:/";
+		}
+    	Long user_id = (Long)session.getAttribute("user_id");
+		User usr = this.userService.findUserById(user_id);
+    	model.addAttribute("user", usr);
+    	
+    	List<Order> orders = usr.getOrders();
+    	model.addAttribute("orders", orders);
+    	
+    	return "orderhistory.jsp";
+    }
     
+    //
+    @RequestMapping("/order/again/{id}")
+    public String orderAgain(@PathVariable("id") Long order_id, 
+    			HttpSession session,
+    			Model model) 
+    {
+		if (session.getAttribute("user_id") == null)
+		{
+			return "redirect:/";
+		}
+		Long user_id = (Long)session.getAttribute("user_id");
+		User usr = this.userService.findUserById(user_id);
+    	model.addAttribute("user", usr);
+
+		Order this_order = this.orderService.findOrderById(order_id);
+    	model.addAttribute("order", this_order);
+    	//		model.addAttribute("categories", this.categoryService.getAllCategories());
+        return "orderagain.jsp";
+    }
+    
+    //Like order 
+    @RequestMapping("/likeorder/{orderId}")
+    public String likeorder(HttpSession session, Model model, @PathVariable("orderId") Long orderId) {
+    	if (session.getAttribute("user_id") == null)
+		{
+			return "redirect:/";
+		}
+    	Long user_id = (Long)session.getAttribute("user_id");
+		User usr = this.userService.findUserById(user_id);
+		Order order = orderService.findOrderById(orderId);
+    	orderService.like(usr, order);
+    
+    	return "redirect:/order/history";
+    }
+    
+    //Unlike Order
+    @RequestMapping("/unlikeorder/{orderId}")
+    public String unlikeorder(HttpSession session, Model model, @PathVariable("orderId")Long orderId) {
+    	Long user_id = (Long)session.getAttribute("user_id");
+		User usr = this.userService.findUserById(user_id);
+		Order order = orderService.findOrderById(orderId);
+		orderService.unlike(usr, order);
+		return "redirect:/order/history";
+    }
     
     @RequestMapping("/edit/order/{id}")
     public String editAlgo(@PathVariable("id") Long order_id, 
@@ -141,7 +204,7 @@ public class OrderController
   			return "redirect:/";
   		}
   		orderService.delete(order_id);
-  		return "redirect:/home";
+  		return "redirect:/order/history";
   	}
   	
   	

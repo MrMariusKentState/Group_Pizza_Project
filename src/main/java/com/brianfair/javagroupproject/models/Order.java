@@ -1,5 +1,6 @@
 package com.brianfair.javagroupproject.models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -105,6 +106,11 @@ public class Order
 //	@JsonIgnore
 //	private List<View> views;
 
+	
+	public String getDateFormatted() {
+		SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyy");
+		return df.format(this.createdAt);
+	}
 	
     @PrePersist
     private void onCreate(){
