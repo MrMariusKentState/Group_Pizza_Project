@@ -1,3 +1,5 @@
+
+
 *{
     border: 0 none;
     outline: 0;
@@ -35,7 +37,8 @@ body
 	min-height: 75px;
 /* 	min-width: 900px; */
 	border-bottom: 1px solid darkgrey;
-	border-top: 1px darkgrey solid;
+	margin-top: -10px;
+	
 	
 }
 
@@ -46,8 +49,9 @@ body
 	align-items: center;
 	border-bottom: 1px darkgrey solid;
 	border-top: 1px darkgrey solid;
-	padding-top: 5px;
+	
 	padding-bottom: 5px;
+	
 	margin: 20px 15px;
 	height: 90px;
 }
@@ -250,9 +254,61 @@ body
     margin-left: auto;
     min-height: 600px;
     min-width: 400px;
-    height: 100vh;
+    height: 130vh;
     width: 100%;
-    border: solid darkgrey 1px;
+    margin-top: 0px;
+   
 }
 
 
+
+
+.hometext {
+	color: black;
+	font-style: italic;
+}
+
+.menutext {
+	color:black;
+	font-size: 30px;
+}
+
+.headers {
+	color: black;
+	text-align: center;
+}
+
+.headers1 {
+	color: #eb8f05;
+	text-align: center;
+	font-style: italic;
+	font-weight: bold;
+}
+
+h3 {
+	margin-top: 10px;
+}
+
+#pizza {
+	margin-top: 10px;
+	background-image: url("Pizza60.jpg");
+	margin-left: 20px;
+	margin-right: 20px;
+	padding: 10px;
+}
+
+#leftcol, #rightcol {
+	display: inline-block;
+	vertical-align: top;
+	width: 550px;
+	margin-left: 60px;
+}
+
+.white{
+	color: white;
+}
+
+#yellow{
+	color: yellow;
+	text-decoration: underline;
+}
