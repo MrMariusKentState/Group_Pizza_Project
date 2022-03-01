@@ -1,5 +1,6 @@
 package com.brianfair.javagroupproject.models;
 
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -202,6 +203,15 @@ public class Order
 
 	public void setLikers(List<User> likers) {
 		this.likers = likers;
+	}
+	
+	public String getDateFormatted()
+	{
+		String pattern = "E, MMM dd, yyyy";
+		Date orderDate = getCreatedAt();
+		String dateToStr = DateFormat.getInstance().format(orderDate);
+		System.out.println(dateToStr);
+		return dateToStr;
 	}
 
     

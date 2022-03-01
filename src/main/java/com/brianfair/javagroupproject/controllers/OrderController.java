@@ -1,5 +1,8 @@
 package com.brianfair.javagroupproject.controllers;
 
+import java.lang.reflect.Array;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.brianfair.javagroupproject.models.Order;
+import com.brianfair.javagroupproject.models.Prices;
+import com.brianfair.javagroupproject.models.StringArrayFunctions;
 import com.brianfair.javagroupproject.models.User;
 import com.brianfair.javagroupproject.services.OrderService;
 import com.brianfair.javagroupproject.services.UserService;
@@ -36,7 +41,7 @@ public class OrderController
 	
 	
   @RequestMapping("/order/details/{id}")
-  public String IdeaDetails(@PathVariable("id") Long order_id,
+  public String orderDetails(@PathVariable("id") Long order_id,
   						Model model, 
   						HttpSession session)
   {
@@ -82,16 +87,27 @@ public class OrderController
         if (result.hasErrors()) {
             return "makeorder.jsp";
         } else{
+//        	String size = "medium";
+//        	String quantity = "2";
+//        	String[] arr_toppings = {"pep","che","sau"};
+//        	String str_toppings = StringArrayFunctions.strArrayToString(arr_toppings);
+//        	String[] str_arr_toppings = StringArrayFunctions.stringToStrArray(str_toppings);
+//        	String price = Prices.calculatePrice(arr_toppings, size, quantity);
+//
+//        	System.out.println("str_toppings: "+str_toppings);
+//        	System.out.println("str_arr_toppings: "+str_arr_toppings);
+//        	System.out.println(price);
+//        	return "redirect:/home";
+
         	Order this_order = orderService.save(order);
         	return "redirect:/order/details/"+this_order.getId();
         }
     }
     
-    
-    
+      
     
     @RequestMapping("/edit/order/{id}")
-    public String editAlgo(@PathVariable("id") Long order_id, 
+    public String editOrder(@PathVariable("id") Long order_id, 
     			HttpSession session,
     			Model model) 
     {
@@ -109,7 +125,7 @@ public class OrderController
         return "editOrder.jsp";
     }
     @RequestMapping(value="/editing/order/{id}", method=RequestMethod.POST)
-    public String editingAlgo(@Valid @ModelAttribute("order") Order order,
+    public String editingOrder(@Valid @ModelAttribute("order") Order order,
     							BindingResult result,
     							@PathVariable("id") Long order_id,
     							HttpSession session,
@@ -130,7 +146,46 @@ public class OrderController
         	return "redirect:/order/details/"+this_order.getId();
         }
     }
+    
+    
+    @RequestMapping("/order/history")
+    public String orderHistory(HttpSession session, Model model)
+    {
+		if (session.getAttribute("user_id") == null)
+		{
+			return "redirect:/";
+		}
+		Long user_id = (Long)session.getAttribute("user_id");
+		User usr = this.userService.findUserById(user_id);
+		model.addAttribute("user", usr);
+		//orderhistory.jsp needs to change from order to user.orders
+		return "orderhistory.jsp";
+    }
 	
+    
+	@RequestMapping("/like/{id}")
+	public String like(@PathVariable("id") Long order_id, HttpSession session)
+	{
+		if (session.getAttribute("user_id") == null)
+		{
+			return "redirect:/";
+		}
+		Long user_id = (Long)session.getAttribute("user_id");
+		User usr = this.userService.findUserById(user_id);
+		return "redirect:/home";
+	}
+	
+	@RequestMapping("/unlike/{id}")
+	public String unlike(@PathVariable("id") Long order_id, HttpSession session)
+	{
+		if (session.getAttribute("user_id") == null)
+		{
+			return "redirect:/";
+		}
+		Long user_id = (Long)session.getAttribute("user_id");
+		User usr = this.userService.findUserById(user_id);
+		return "redirect:/home";
+	}
     
     
   	@RequestMapping("/delete/order/{id}")
