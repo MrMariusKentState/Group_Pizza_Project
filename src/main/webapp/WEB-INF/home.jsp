@@ -26,7 +26,7 @@
 </head>
 <body class="bgLightBlack">
 	<div class="package bgLightBlack">
-		<h1 class="title_grad txt_grad title_bar" >The World's Best Pizza!</h1>
+		<h1 class="title_grad txt_grad title_bar" >The World's Best Pizza</h1>
 		<div class="taskbar">
 			<div class="marginLeft width70">
 				<p class="txtLeft text-secondary">Welcome ${user.firstName} ${user.lastName}</p>

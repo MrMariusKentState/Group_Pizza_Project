@@ -17,7 +17,7 @@
 	<!-- FOR Bootstrap CSS -->
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" >
 	<!-- YOUR own local CSS -->
-	<link rel="stylesheet" href="/css/stylekaris.css">
+  <link rel="stylesheet" href="/css/stylekaris.css">
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/stylemulti.css">
 	<link rel="stylesheet" href="/css/jquery.multiselect.css">
@@ -31,6 +31,7 @@
 
 	<title>Order Pizza</title>
 </head>
+
 
 <body>
 <div class="background">
@@ -49,15 +50,15 @@
 	</div>
 </nav>
 <div class="container">
-
+  
 		<h1 class="title_grad txt_grad title_bar">Make an Order</h1>
-	
-
+		
 		<div class="d-flex justify-content-center mt-4">
 			<div class = "row border border-secondary p-4 rounded marg-bottom-10 card-background">
 				<div class="col">
 					<h2 class="text-center" > ~ <span class="text-center bold">Personalize Your Pizza</span> ~ </h2>
 			
+
 			<form:form action="/making/order" method="POST" modelAttribute="order">
 				<div class="form-group col-md-12 mt-4">
 					<form:errors class="text-danger" path="method"/>
@@ -161,13 +162,9 @@
 					</div>
 				</div>
 			
-<!-- 				<p class="d-flex flex-column"> -->
-<%-- 					<form:label class="color-bl label txt-underline" path="price">Price: </form:label> --%>
-<%-- 					<form:errors class="text-danger" path="price"/> --%>
-<%-- 					<form:input class="ms-3 bg-dark color-gr border border-light" type="text" path="price" placeholder="Price"/> --%>
-<!-- 				</p> -->
-			
-				<div class="d-flex flex-row justify-content-around mt-4">
+
+				
+				<div class="d-flex flex-row justify-content-around m-3">
 					<form:hidden path="price" value="12.50"/>
 					<form:hidden path="user" value="${user.id}"/>
 					<input class="btn btn-primary" type="submit" value="Submit Order"/>
@@ -177,6 +174,7 @@
 			</form:form>
 		</div>
 	</div>
+
 </div>
 </div>
 </div>
@@ -186,6 +184,10 @@
     <script src="/javascript/bootstrap.min.js"></script>
     <script src="/javascript/jquery.multiselect.js"></script>
     <script src="/javascript/main.js"></script>
+
+
+
+
 </body>
 </html>
 
