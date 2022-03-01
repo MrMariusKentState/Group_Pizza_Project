@@ -225,6 +225,14 @@ public class User
 		this.orders = orders;
 	}
 
+	public List<Order> getFavoriteOrders() {
+		return favoriteOrders;
+	}
+
+	public void setFavoriteOrders(List<Order> favoriteOrders) {
+		this.favoriteOrders = favoriteOrders;
+	}
+
     
     
 	
