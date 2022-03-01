@@ -34,7 +34,7 @@
 				
 			<div class="taskbarBtns width30">
 				<a class="links" href="/edit/user">Edit Profile</a>
-				<a class="links" href="/add/pizza">Add Pizza</a>
+				<a class="links" href="/make/order">Order</a>
 				<a class="links" href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
 			</div>
 		</div>

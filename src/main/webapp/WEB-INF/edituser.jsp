@@ -40,7 +40,10 @@
 		
 		 	<div><br>
 			 	<div class="d-flex flex-column justify-content-center align-items-center mb-5">   
-				    <form:form class="form-control w-75" method="POST" action="/editing/user/${user.id}" modelAttribute="user">
+				    <form:form class="form-control w-50" method="POST" action="/editing/user/${user.id}" modelAttribute="user">
+				    <div id="account">
+				    <h1>~Account Information~</h1>
+				    </div>
 		   		        <p class="mb-3 mt-t">
 				            <form:label path="firstName">First Name: </form:label>
 				            <form:errors class="text-danger" path="firstName"/>
@@ -84,8 +87,8 @@
 				            <form:password class="form-control" placeholder="Password" path="passwordConfirmation" value="${user.password}"/>
 				        </p>
        			        <div class="d-flex flex-row justify-content-around m-3">
-				        	<input class="btns" type="submit" value="Submit"/>
-				        	<a class="btns" href="/home">Cancel</a>
+				        	<input class="button1" type="submit" value="Submit"/>
+				        	<a class="button" href="/home">Cancel</a>
 				    	</div>
 		    		</form:form>
 		     	</div>

@@ -31,40 +31,34 @@
 				<a class="links" href="/home">Home</a>
 				<a class="links" href="/edit/user">Edit Profile</a>
 				<a class="links" href="/make/order">Order</a>
-				<a class="links" href="/logout">Logout<span>- (${user.firstName} ${user.lastName}) </span></a>
+				<a class="links" href="/logout">Logout <span>- (${user.firstName} ${user.lastName}) </span></a>
 	</div><br>	
-		<h1 class="title_grad txt_grad title_bar" >Order Details</h1>
+		<h1 class="title_grad txt_grad title_bar" >Order Confirmed</h1>
 		<hr>
 		<div>
 		</div>
 
 				<div id="showOrderWrapper">
-					<h2 class="text-center" > ~ <span>Pizza</span> ~ </h2>
+					<h2 class="text-center" > ~ <span>Order Details</span> ~ </h2>
 					<hr>
 					<div>
-						<p>Name: </p>
-						<p>${order.user.firstName} ${order.user.lastName}</p>
+						<h3>Name: ${order.user.firstName} ${order.user.lastName}</h3>
 					</div>
 					<div>
-						<p>Method: </p>
-						<p>${order.method}</p>
+						<h3>Method: ${order.method}</h3>
 					</div>
 
 					<div>
-						<p>Crust: </p>
-						<p>${order.crust}</p>
+						<h3>Crust: ${order.crust}</h3>
 					</div>
 					<div>
-						<p>Size: </p>
-						<p>${order.size}</p>
+						<h3>Size: ${order.size}</h3>
 					</div>
 					<div>
-						<p>Toppings: </p>
-						<p>${order.toppings}</p>
+						<h3>Toppings: ${order.toppings}</h3>
 					</div>
 					<div>
-						<p>Price: </p>
-						<p>${order.price}</p>
+						<h3>Price: ${order.price}</h3>
 					</div>
 
 					<c:if test="${user.id == algo.user.id}">
@@ -72,8 +66,31 @@
 							<a class="btns" href="/edit/order/${order.id}">Edit</a>
 							<a class="btns text-danger" href="/delete/algo/${order.id}">Delete</a>
 						</div>
-					</c:if>
+					</c:if><br>
+					    <div class="d-flex flex-row justify-content-around m-3">
+				        	<a class="button1" href="/make/order">Order Again!</a>
+				        	<a class="button" href="/home">Home</a>
+				    	</div>
 				</div>
+				<br>
+				
+				<div id="showDeliveryDetails">
+					<h2 class="text-center" ><span> ~Your Delivery Info ~<br>(if delivery was method)</span></h2>
+					<hr>
+					<div>
+						<h3>Name: ${order.user.firstName} ${order.user.lastName}</h3>
+					</div>
+					<div>
+						<h3>Address: ${order.user.address}</h3>
+					</div>
+
+					<div>
+						<h3>City: ${order.user.city}</h3>
+					</div>
+					<div>
+						<h3>State: ${order.user.state}</h3>
+					</div>
+						</div>
 			</div>
 		
 </body>
