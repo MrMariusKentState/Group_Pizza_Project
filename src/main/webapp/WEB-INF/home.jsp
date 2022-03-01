@@ -16,7 +16,8 @@
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 
 	<!-- MY OWN CSS -->
-	<link rel="stylesheet" href="/css/style.css"/>
+	<link rel="stylesheet" href="/css/home.css"/>
+	
 
 	<!-- FOR ANY BOOTSTRAP THAT USES JS OR jQuery-->
 <!-- 	<script src="/webjars/jquery/jquery.min.js"></script> -->
@@ -26,60 +27,41 @@
 </head>
 <body class="bgLightBlack">
 	<div class="package bgLightBlack">
-		<h1 class="title_grad txt_grad title_bar" >The World's Best Pizza!</h1>
 		<div class="taskbar">
 			<div class="marginLeft width70">
-				<p class="txtLeft text-secondary">Welcome ${user.firstName} ${user.lastName}</p>
+				<p class="white navbar-brand link">Welcome!</p>
 			</div>
 				
-			<div class="taskbarBtns width30">
+			<div class="col-md-5">
 				<a class="links" href="/edit/user">Edit Profile</a>
 				<a class="links" href="/make/order">Order</a>
 				<a class="links" href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
 			</div>
+		
 		</div>
 		
-
-
+		<div id = "pizza">
+		
+		<h1 class="title_grad txt_grad title_bar">Welcome to Tony's Pizza!</h1>
+		<br>
+		<br>
+		<h1 class = "headers1">Create your own custom pizza!</h1>
+		<br>
+		<h3 class = "headers">With our fresh mozzarella and classic marinara sauce</h3>
+		<br>
+		<h3 class = "headers">Over 50 different choices of toppings available!</h3>
+		<br>
+		<h3 class = "headers">Classic, Deep Dish, and stuffed crusts available!</h3>
+		<br>
+		<br>
+		<h1 class = "headers">Click <span id = "yellow"><a href = "/make/order">here</a></span> to begin your order!</h1>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		</div>
 	</div>
+
 </body>
 </html>
-
-<!-- 		<div class="myContainer">  -->
-<!-- 		  <h2 class="title">Algos</h2>          -->
-<!-- 		  <table> -->
-<!-- 			<thead class="bgDkGrey"> -->
-<!-- 			  <tr class="bgDkGrey black"> -->
-<!-- 			    <th>Algo</th> -->
-<!-- 			    <th>Description</th> -->
-<!-- 			    <th>Language</th> -->
-<!-- 			    <th>Likes</th> -->
-<!-- 			    <th>Action</th> -->
-<!-- 			  </tr> -->
-<!-- 			</thead> -->
-<!-- 			<tbody> -->
-			
-<%-- 				<c:forEach  items="${algos}" var="algo"> --%>
-<!-- 				  <tr class="bgDarkDkGrey"> -->
-<%-- 				  	<td> <a class="links" href="/algo/details/${algo.id}"> ${algo.name}</a> </td> --%>
-<%-- 				    <td>${algo.description}</td> --%>
-<%-- 				    <td>${algo.language}</td> --%>
-<%-- 				    <td>${algo.likers.size()}</td> --%>
-<!-- 				    <td> -->
-<%-- 				    	<c:choose> --%>
-<%-- 				    	<c:when test="${algo.likers.contains(user)}"> --%>
-<%-- 				    		<a class="links" href="/unlike/${algo.id}">Unlike</a> --%>
-<%-- 				    	</c:when> --%>
-<%-- 				    	<c:otherwise> --%>
-<%-- 				    		<a class="links" href="/like/${algo.id}">Like</a> --%>
-<%-- 				    	</c:otherwise> --%>
-<%-- 				    	</c:choose> --%>
-<!-- 				    </td> -->
-<!-- 				  </tr> -->
-<%-- 				</c:forEach> --%>
-<!-- 			</tbody> -->
-<!-- 		  </table> -->
-
-<!-- 		</div> -->
-
-

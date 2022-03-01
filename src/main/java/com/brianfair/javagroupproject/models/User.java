@@ -225,6 +225,7 @@ public class User
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
+
 	
 	public String getDateFormatted()
 	{
@@ -235,6 +236,16 @@ public class User
 		System.out.println(dateToStr);
 		return dateToStr;
 	}
+
+	public List<Order> getFavoriteOrders() {
+		return favoriteOrders;
+	}
+
+	public void setFavoriteOrders(List<Order> favoriteOrders) {
+		this.favoriteOrders = favoriteOrders;
+	}
+
+//c4523ba8df196210006438eb002b376c995842b2
     
     
 	
