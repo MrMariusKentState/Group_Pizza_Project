@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- c:out ; c:forEach etc. --> 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
@@ -27,12 +26,38 @@
 	<!-- For any Bootstrap that uses JS or jQuery-->
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<!-- c:out ; c:forEach etc. --> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+<!-- Formatting (dates) --> 
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!-- form:form -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>  
+
+<!-- for rendering errors on PUT routes -->
+<%@ page isErrorPage="true" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- FOR Bootstrap CSS -->
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" >
+	<!-- YOUR own local CSS -->
+	<link rel="stylesheet" href="/css/stylekaris.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/stylemulti.css">
+	<link rel="stylesheet" href="/css/jquery.multiselect.css">
+	
+	<link href=”https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css” rel=”stylesheet”>
+	<!-- For any Bootstrap that uses JS or jQuery-->
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
 
 
 	<title>Order Pizza</title>
 </head>
-
 
 <body>
 <div class="background">
@@ -41,7 +66,7 @@
 		<div class = "col-md-4">
 			<a class="navbar-brand link" href="/home"> Tony's Pizza</a>
 		</div>
-		<div class = "col-md-5">
+		<div class = "col-md-auto">
 				<a class="link" href="/home">Home</a>
 				<a class="link" href="/edit/user">Edit Profile</a>
 				<a class="link" href="/order/history">Order History</a>
@@ -51,15 +76,15 @@
 	</div>
 </nav>
 <div class="container">
-  
+
 		<h1 class="title_grad txt_grad title_bar">Make an Order</h1>
-		
+	
+
 		<div class="d-flex justify-content-center mt-4">
 			<div class = "row border border-secondary p-4 rounded marg-bottom-10 card-background">
 				<div class="col">
 					<h2 class="text-center" > ~ <span class="text-center bold">Personalize Your Pizza</span> ~ </h2>
 			
-
 			<form:form action="/making/order" method="POST" modelAttribute="order">
 				<div class="form-group col-md-12 mt-4">
 					<form:errors class="text-danger" path="method"/>
@@ -72,7 +97,7 @@
 								<option value="" disabled selected>--Select Method--</option>
 								<option value="Takeout">Takeout</option>
 	        					<option value="Delivery">Delivery</option>
-	        					<option value="Dine-in">Dine-in</option>
+	        					<option value="Dine_In">Dine-In</option>
 							</form:select>
 						</div>
 					</div>
@@ -91,7 +116,7 @@
 								<option value="Small">Small</option>
 	        					<option value="Medium">Medium</option>
 	        					<option value="Large">Large</option>
-	        					<option value="X-large">X-Large</option>
+	        					<option value="XLarge">X-Large</option>
 							</form:select>
 						</div>
 					</div>
@@ -111,7 +136,7 @@
 	        					<option value="Thin">Thin</option>
 	        					<option value="Thick">Thick</option>
 	        					<option value="Stuffed">Stuffed</option>
-	        					<option value="Gluten-Free">Gluten Free</option>
+	        					<option value="Gluten Free">Gluten-Free</option>
 							</form:select>
 						</div>
 					</div>
@@ -137,6 +162,7 @@
 						<div class = "col-md-10">
 							<form:errors class="text-danger" path="toppings"/>
 							<form:select path="toppings" name="basic[]" multiple="multiple" class="3col active form-control">
+								<option value="">No Toppings</option>
 								<option value=" Tomato Sauce">Tomato Sauce</option>
 								<option value=" Pesto">Pesto Sauce</option>
 								<option value=" Mozzarella">Mozzarella Cheese</option>
@@ -163,10 +189,14 @@
 					</div>
 				</div>
 			
-
-				
-				<div class="d-flex flex-row justify-content-around m-3">
-					<form:hidden path="price" value="12.50"/>
+<!-- 				<p class="d-flex flex-column"> -->
+<%-- 					<form:label class="color-bl label txt-underline" path="price">Price: </form:label> --%>
+<%-- 					<form:errors class="text-danger" path="price"/> --%>
+<%-- 					<form:input class="ms-3 bg-dark color-gr border border-light" type="text" path="price" placeholder="Price"/> --%>
+<!-- 				</p> -->
+			
+				<div class="d-flex flex-row justify-content-around mt-4">
+					<form:hidden path="price" value="0"/>
 					<form:hidden path="user" value="${user.id}"/>
 					<input class="btn btn-primary" type="submit" value="Submit Order"/>
 					<a class="btn btn-danger"  href="/home">Cancel</a>
@@ -175,20 +205,14 @@
 			</form:form>
 		</div>
 	</div>
-
 </div>
 </div>
 </div>
-	
- <script src="javascript/jquery-3.3.1.min.js"></script>
- <script src="/javascript/popper.min.js"></script>
-    <script src="/javascript/bootstrap.min.js"></script>
+	<script src="javascript/jquery-3.3.1.min.js"></script>
+ 	<script src="/javascript/popper.min.js"></script>
+ 	<script src="/javascript/bootstrap.min.js"></script>
     <script src="/javascript/jquery.multiselect.js"></script>
     <script src="/javascript/main.js"></script>
-
-
-
-
 </body>
 </html>
 

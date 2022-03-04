@@ -151,4 +151,3 @@
 <%-- 				</form:form> --%>
 
 <%-- <c:out value="${user.email}"></c:out> --%>
-

@@ -5,6 +5,11 @@
     margin: 0;
 }
 
+.text_color
+{
+	color: white;
+}
+
 body
 {
     display: flex;
@@ -12,6 +17,16 @@ body
     padding: 15px;
     min-width: 900px;
 }
+
+.pizza {
+	margin-top: 10px;
+	background-image: url("/images/backgroundorder.jpg");
+	background-size: 100%;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding: 10px;
+}
+
 
 .taskbarBtns
 {
@@ -257,7 +272,10 @@ body
 
 
 
-
+.opacity
+{
+	opacity: .8;
+}
 
 
 

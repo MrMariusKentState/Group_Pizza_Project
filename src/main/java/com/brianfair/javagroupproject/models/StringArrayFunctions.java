@@ -2,7 +2,7 @@ package com.brianfair.javagroupproject.models;
 
 public class StringArrayFunctions {
 	
-	public static String strArrayToString(String[] arr)
+	public static String strArrToStr(String[] arr)
 	{
     	String str = "";
     	for(int i = 0; i< arr.length; i++)
@@ -20,14 +20,28 @@ public class StringArrayFunctions {
 	}
 	
 	
-	public static String[] stringToStrArray(String str)
+	public static String[] strToStrArr(String str)
 	{
-    	String[] str_array = str.split(",");
-    	return str_array;
+		if (str != null)
+		{
+	    	String[] str_array = str.split(",");
+	    	return str_array;
+		}
+		return null;
 	}
-
+	
+	
+	public static boolean containsEmptyStr(String str)
+	{
+		if (str == null) return false;
+		
+		String[] arr = StringArrayFunctions.strToStrArr(str);
+		for(String string: arr)
+		{
+			if (string == "") return true;
+		}
+		return false;
+	}
 }
-// lines to add to controller
-//String str_toppings = StringArrayFunctions.strArrayToString(arr_toppings);
-//String[] str_arr_toppings = StringArrayFunctions.stringToStrArray(str_toppings);
-//String price = Prices.calculatePrice(arr_toppings, size, quantity);
+
+

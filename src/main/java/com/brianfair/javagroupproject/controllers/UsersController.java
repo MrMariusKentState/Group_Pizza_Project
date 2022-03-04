@@ -38,7 +38,6 @@ public class UsersController
 
 	@RequestMapping("/")
 	public String registerForm(@ModelAttribute("user") User user) {
-		System.out.println(user.getDateFormatted());
 	    return "main.jsp";
 	}
 
@@ -50,8 +49,9 @@ public class UsersController
 			return "redirect:/";
 		}
 		long user_id = (Long) session.getAttribute("user_id");
-		User this_user = userService.findUserById(user_id);
-		model.addAttribute("user", this_user);
+		User usr = userService.findUserById(user_id);
+		
+		model.addAttribute("user", usr);
 
 		
 		return "home.jsp";

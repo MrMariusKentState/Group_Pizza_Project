@@ -62,8 +62,7 @@ public class Order
 	@Size(min = 1, max = 25, message="Can't be blank!")
 	private String quantity;
 	
-	@NotNull
-	@Size(min = 2, max = 200, message="Must be more than 2 characters long!")
+
 	private String toppings;
 	
 	@NotNull

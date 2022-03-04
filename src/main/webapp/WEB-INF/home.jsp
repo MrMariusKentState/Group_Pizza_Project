@@ -28,13 +28,14 @@
 <body class="bgLightBlack">
 	<div class="package bgLightBlack">
 		<div class="taskbar">
-			<div class="marginLeft width70">
-				<p class="white navbar-brand link">Welcome!</p>
+			<div class="marginLeft w-25">
+				<p class="white navbar-brand">Welcome!</p>
 			</div>
 				
-			<div class="col-md-5">
+			<div class="d-flex flex-row justify-content-end w-75">
 				<a class="links" href="/edit/user">Edit Profile</a>
 				<a class="links" href="/make/order">Order</a>
+				<a class="links" href="/order/history">Order History</a>
 				<a class="links" href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
 			</div>
 		

@@ -39,16 +39,23 @@
 		<div class = "col-md-4">
 			<a class="navbar-brand link" href="/home"> Tony's Pizza</a>
 		</div>
-		<div class = "col-md-5">
+		<div class = "col-md-auto">
 				<a class="link" href="/home">Home</a>
 				<a class="link" href="/edit/user">Edit Profile</a>
+				<a class="link" href="/make/order">Create Order</a>
 				<a class="link" href="/logout">Logout - (${user.firstName} ${user.lastName})</a>
 		</div>
 	
 	</div>
 </nav>
 <div class="container">
-	 <h1 class="mt-4">Order History</h1>
+	 <h1 class="mt-4 text-center">Order History</h1>
+	<c:if test="${orders.size() < 1}">
+	 	<div class="text-center mt-4">
+	 		<h2 class="text-danger">You Have Not Made Any Orders Yet</h2>
+	 		<a class="btn btn-primary" href="/make/order">Create Order</a>
+	 	</div>
+	 </c:if>
 	<c:forEach items="${orders}" var="order">
 		<div class="row border border-2 border-secondary rounded shadow-sm d-flex p-3 mt-4 card-background">
 			<div class="row">
@@ -60,6 +67,7 @@
 					<h6><strong>Size: </strong><c:out value="${order.size}" /></h6>
 					<h6><strong>Crust: </strong><c:out value="${order.crust}" /></h6>
 					<h6><strong>Toppings: </strong><c:out value="${order.toppings}" /></h6>
+					<h6><strong>Method: </strong><c:out value="${order.method}" /></h6>
 					<c:if test="${order.likers.size() > 0}">
 					<h5 class="text-primary"><strong>Favorited!</strong></h5>
 					</c:if>
@@ -67,23 +75,32 @@
 		
 			
 			<div class="col-md-4">
-			<a href="/make/order" class="btn btn-primary mb-2 margin-right-2">Order Again</a>
-			<c:if test="${order.likers.size() < 1}">
-				<a href="/likeorder/${order.id}" class="btn btn-primary mb-2">Add Favorite</a>
-			</c:if>
-			<c:if test="${order.likers.size() > 0}">
-				
-				<a href="/unlikeorder/${order.id}" class="btn btn-danger mb-2">Remove Favorite</a>
-			</c:if>
-			<a href="/delete/order/${order.id}" class="btn btn-danger">Delete Order</a>
+				<form:form action="/reordering" method="POST" modelAttribute="order">
+					<form:hidden path="method" value="${order.method}"/>
+					<form:hidden path="size" value="${order.size}"/>
+					<form:hidden path="crust" value="${order.crust}"/>
+					<form:hidden path="quantity" value="${order.quantity}"/>
+					<form:hidden path="toppings" value="${order.toppings}"/>
+					<form:hidden path="price" value="${order.price}"/>
+					<form:hidden path="user" value="${user.id}"/>
+					<input class="btn btn-primary mb-2 margin-right-2" type="submit" value="Order Again"/>
+				</form:form>
+<%-- 					<a href="/edit/order/${order.id}" class="btn btn-primary mb-2 margin-right-2">Order Again</a> --%>
+				<c:if test="${order.likers.size() < 1}">
+					<a href="/likeorder/${order.id}" class="btn btn-primary mb-2 margin-right-2">Add Favorite</a>
+				</c:if>
+				<c:if test="${order.likers.size() > 0}">
+					
+					<a href="/unlikeorder/${order.id}" class="btn btn-danger mb-2 margin-right-2">Remove Favorite</a>
+				</c:if>
+				<a href="/delete/order/${order.id}" class="btn btn-danger mb-2">Delete Order</a>
 			</div>
 		</div>
-		</c:forEach>
+	</c:forEach>
 </div>
 </div>
 </body>
 </html>
-
 
 
 

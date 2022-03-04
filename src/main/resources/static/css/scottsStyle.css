@@ -266,8 +266,8 @@ body{
 }
 #showOrderWrapper{
 	background: white;
-	width: 500px;
-	margin: 0px 0px 0px 150px;
+	width: fit-content;
+/* 	margin: 0px 0px 0px 150px; */
 	align-items: center;
 	font-weight: bold;
     text-align: center;
@@ -275,8 +275,8 @@ body{
 }
 #showDeliveryDetails{
 	background: white;
-	width: 500px;
-	margin: -490px 0px 0px 815px;
+	width: fit-content;
+/* 	margin: -490px 0px 0px 815px; */
 	align-items: center;
 	font-weight: bold;
     text-align: center;
@@ -308,6 +308,18 @@ body{
   font-size: 16px;
   border-radius: 5px;
 }
+
+
+.maxWidth
+{
+	max-width: 400px;
+}
+/* #flexDetails */
+/* { */
+/* 	display: flex; */
+/* 	flex-direction: row; */
+/* 	justify-content: between; */
+/* } */
 
 
 

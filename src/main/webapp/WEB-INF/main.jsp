@@ -20,18 +20,18 @@
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/javascript/javascript.js" defer></script>
-	<title>Products and Categories Home</title>
+	<title>Tony's Pizza Login/Registration</title>
 </head>
-<body class="bg-dark">
-	<div class="d-flex flex-column w-100 bg-dark text-light">
+<body class="pizza">
+	<div class="d-flex flex-column w-100 text-light">
 		<h1 class="m-3 text-center title_grad txt_grad pb-3 border_bottom pt-3 border_top" >Tony's Pizza</h1>
 		<div class="d-flex flex-row">
-			<div class="container border border-dark" >
-				<h1 class="m-3 pb-3 text-center border_bottom" >Register</h1>
+			<div class="container" >
+				<h1 class="m-3 pb-3 text-center border_bottom text_color" >Register</h1>
 				
 			 	<div class="d-flex flex-column justify-content-center align-items-center mb-5">   
 		
-				    <form:form class="form-control w-75" method="POST" action="/registering" modelAttribute="user">
+				    <form:form class="form-control w-75 opacity" method="POST" action="/registering" modelAttribute="user">
 		   		        <p class="mb-3 mt-t">
 				            <form:label path="firstName">First Name: </form:label>
 				            <form:errors class="text-danger" path="firstName"/>
@@ -79,12 +79,12 @@
 			     </div>
 			</div>
 			
-			<div class="container border border-dark" >
-				<h1 class="m-3 text-center pb-3 border_bottom" >Login</h1>
+			<div class="container" >
+				<h1 class="m-3 text-center pb-3 border_bottom text_color" >Login</h1>
 				
 				<div class="d-flex flex-column justify-content-center align-items-center mb-5">
 				    <p class="text-danger" ><c:out value="${loginError}" /></p>
-				    <form class="form-control w-75" method="post" action="/loggingIn">
+				    <form class="form-control w-75 opacity" method="post" action="/loggingIn">
 				        <p class="mb-3 mt-t">
 				            <label for="email">Email: </label>
 				            <input class="form-control" placeholder="Email" type="text" id="email" name="email"/>
@@ -103,7 +103,6 @@
 </body>
 </html>
 
-<h2>test for github, okay to delete this push, it is just a test</h2>
 
 <%-- <c:out value="${user.email}"></c:out> --%>
 <!-- 				        <p class="mb-3 mt-t"> -->
@@ -111,4 +110,3 @@
 <%-- 				            <form:errors class="text-danger" path="picture"/> --%>
 <%-- 				            <form:input class="form-control" type="file" accept="image/png, image/jpeg" placeholder="Browse Folders" path="picture"/> --%>
 <!-- 				        </p> -->
-

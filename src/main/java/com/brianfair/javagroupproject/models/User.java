@@ -2,6 +2,7 @@ package com.brianfair.javagroupproject.models;
 
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -226,16 +227,6 @@ public class User
 		this.orders = orders;
 	}
 
-	
-	public String getDateFormatted()
-	{
-		String pattern = "E, MMM dd, yyyy";
-		Date orderDate = getCreatedAt();
-		System.out.println(orderDate);
-		String dateToStr = DateFormat.getInstance().format(orderDate);
-		System.out.println(dateToStr);
-		return dateToStr;
-	}
 
 	public List<Order> getFavoriteOrders() {
 		return favoriteOrders;
@@ -245,10 +236,7 @@ public class User
 		this.favoriteOrders = favoriteOrders;
 	}
 
-//c4523ba8df196210006438eb002b376c995842b2
-    
-    
-	
+
 
 	
 	
@@ -260,3 +248,15 @@ public class User
 	    
 	    
 }
+
+//
+//public String getDateFormatted()
+//{
+//	String pattern = "E, MMM dd, yyyy - h:mmaa";
+//	Date orderDate = getCreatedAt();
+//	System.out.println(orderDate);
+//	DateFormat df = new SimpleDateFormat(pattern);
+//	String dateStr = df.format(orderDate);
+//	System.out.println(dateStr);
+//	return dateStr;
+//}
