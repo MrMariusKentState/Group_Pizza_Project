@@ -5,7 +5,7 @@
 <h3>Features</h3>
 <ul>
   <li>User registration and login with validations</li>
-  <li>User may submit an order using drop-down and checkbox menus for crust size, method of delivery, and toppings</li>
+  <li>User may create an order using drop-down and checkbox menus for crust size, method of delivery, and toppings</li>
   <li>User may edit their profile and login information, and user may also edit their order</li>
   <li>User may display a history of previous orders, delete previous orders, and select specific orders as "favorites"</li>
  </ul>
