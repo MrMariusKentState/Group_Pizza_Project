@@ -1,6 +1,6 @@
 <h1>Tony's Pizza</h1>
 
-<p>This is a group project I and other students of the Coding Dojo Software Development program had completed over two weeks.  It utilizes Java, Spring Tool Suite 4, and Boostrap..</p>
+<p>This is a group project I and other students of the Coding Dojo Software Development program had completed over two weeks.  It utilizes Java, Spring Tool Suite 4, and Boostrap.</p>
 
 <h3>Features</h3>
 <ul>
